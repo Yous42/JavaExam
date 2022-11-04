@@ -2,9 +2,11 @@ package echec;
 
 import java.util.List;
 
-interface Mouvement {
+// Ajout public
+public interface Mouvement {
 
-	
-	List<Position> getMouvementPossible();
+	// Ajout de public abstract pour montrer qu'on à une classe abstract même si c'est fait par 
+	// défaut
+	public abstract List<Position> getMouvementPossible();
 	
 }

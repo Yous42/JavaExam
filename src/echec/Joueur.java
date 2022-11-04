@@ -1,75 +1,59 @@
 package echec;
 
 import java.util.List;
+
+import model.Piece;
+import model.Roi;
+
 import java.util.ArrayList;
 
-public class Joueur{
+public class Joueur {
 	private String nom;
 	private Couleur couleur;
-	 List<Piece> tab=new ArrayList<Piece>();
-
+	private List<Piece> tab = new ArrayList<Piece>();
 	private Couleur couleurEnnemie;
 
-	Joueur (String n, Couleur c)
-	{
-		nom=n;
-		couleur=c;
+	public Joueur(String n, Couleur c) {
+		nom = n;
+		couleur = c;
 	}
 
-	public Couleur getCouleur()
-	{
+	public Couleur getCouleur() {
 		return couleur;
 	}
 
+	public void updateTab() {
+		if (couleur.equals(Couleur.BLACK)) {
+			tab = Piece.getBlackPiece();
+			couleurEnnemie = Couleur.BLACK;
 
-	public void updateTab()
-	{
-		if (couleur.equals(Couleur.BLACK))
-		{
-			tab=Piece.getBlackPiece();
-			couleurEnnemie=Couleur.BLACK;
-			
+		} else {
+			tab = Piece.getWhitePiece();
+			couleurEnnemie = Couleur.WHITE;
+
 		}
-		 else
-		 {
-			 tab=Piece.getWhitePiece();		 
-			 couleurEnnemie=Couleur.WHITE;
-
-		 }
 
 	}
-
-
 
 	public String getNom() {
 		return nom;
 	}
 
-
-
-
-
-	public void abandonner(){
+	// Rien à l'intérieur
+	public void abandonner() {
 
 	}
 
-
-
-
-
 	public Piece bougerT1(Position depart) {
-		Piece selectionnee=null;
-		boolean ok=false;
-		for (Piece count: tab)
-		{
-			 if (depart.equals(count.getPosition()))
-			 {
-				 selectionnee=count;
-				 ok=true;
-				 System.out.println(count.getMouvementPossible());
-				 break;
-			 }
-
+		Piece selectionnee = null;
+		boolean ok = false;
+		for (Piece count : tab) {
+			if (depart.equals(count.getPosition())) {
+				selectionnee = count;
+				ok = true;
+				System.out.println(count.getMouvementPossible());
+				break;
+			}
 
 		}
 		if (!ok)
@@ -77,40 +61,34 @@ public class Joueur{
 		return selectionnee;
 
 	}
+
 	public Piece bougerRoiT1(Position depart) {
-		Piece selectionnee=null;
-		boolean ok=false;
-		if (depart.equals(Roi.getRoiCouleur(couleur).getPosition()))
-		{
-			selectionnee=Roi.getRoiCouleur(couleur);
-			ok=true;
+		Piece selectionnee = null;
+		boolean ok = false;
+		if (depart.equals(Roi.getRoiCouleur(couleur).getPosition())) {
+			selectionnee = Roi.getRoiCouleur(couleur);
+			ok = true;
 			System.out.println(selectionnee.getMouvementPossible());
 
 		}
 
-
-
 		if (!ok)
 			System.out.println("Position erron�e, rejouer");
 		return selectionnee;
 
 	}
 
-	public boolean bougerT2(Piece selectionnee, Position depart,Position arrivee) {
+	public boolean bougerT2(Piece selectionnee, Position depart, Position arrivee) {
 
-		boolean tentative=selectionnee.bouger(arrivee); 						
-		if (tentative)
-		{
-			for (Piece count: Piece.getColoredPiece(couleurEnnemie)  )
-			{
-				if(count.getPosition().equals(arrivee))
-				{
-					count.destroy();											
+		boolean tentative = selectionnee.bouger(arrivee);
+		if (tentative) {
+			for (Piece count : Piece.getColoredPiece(couleurEnnemie)) {
+				if (count.getPosition().equals(arrivee)) {
+					count.destroy();
 					break;
 				}
 			}
-		}
-		else
+		} else
 			System.out.println("Erreur d'arriv�e");
 		return tentative;
 	}
@@ -120,8 +98,16 @@ public class Joueur{
 		return "Joueur [nom=" + nom + ", couleur=" + couleur + "]";
 	}
 
+	
+	// Ajout get pour tab 
+	public List<Piece> getTab() {
+		return tab;
+	}
 
+	public void setTab(List<Piece> tab) {
+		this.tab = tab;
+	}
 
-
-
+	
+	
 }
