@@ -1,0 +1,103 @@
+Executeur.java :
+- Manque le static dans la méthode main
+- Modification du type en paramètre de méthode. Character => String. 
+- Lance la méthode méthode sur Game et non l'objet g
+
+Game.java :
+- indentation du code
+- Manque private pour attribut => ajout du private
+- certaines variable commence par une majuscule => passe en minuscule => ex : C1 en c1
+
+- A VOIR : méthode initialisation en private
+
+
+
+Joueur.java :
+- Mauvaise indentation
+- passe en private les attributs
+- Pour le constructeur, manque le public
+- méthode abandonner() => aucune instruction
+- ajout get pour la list => permet d'y accéder dans Game.java
+
+
+Piece.java :
+- Import de ArrayList et List plutôt que * pour éviter d'importer des fichiers qui nes sont pas utilisé => gagner en performance
+- Indentation
+- La classe Piece implémente l'interface Mouvement mais n'implémente pas les méthodes de l'interfaces => ajout
+- Passe les méthodes bloqueAmi et bloqueEnnemi en public
+- A VOIR : mettre en protected les propriétés => permet aux classe enfant d'y avoir accès
+
+
+Mouvement.java :
+- mettre l'interface en public
+- Ajout de public abstract pour montrer qu'on à une classe abstract même si c'est fait par défaut
+
+
+Case.java :
+- L'attribut affichage est déclaré mais n'est pas utilisé => on peut le delete
+- Indentation
+
+
+Cavalier.java :
+- Import de ArrayList et List plutôt que * pour éviter d'importer des fichiers qui nes sont pas utilisé => gagner en performance
+- Suppression du todo dans le constructeur et getMouvementPossible
+- indentation
+
+
+Couleur.java :
+- indentation
+-  A VOIR : Pour l'énum, pas besoin de passer par le constructeur et le le get => on fait directement appel par exemple dans game =>
+  Couleur.BLACK
+
+Echiquier.java :
+- indentation
+- Import de ArrayList plutôt que * pour éviter d'importer des fichiers qui nes sont pas utilisé => gagner en performance
+- Mettre en private l'attribut tabCase + Ajout des get et set
+- Modification du switch => p.getClass().getSimpleName() => celui-ci prends le nom de la class hors ici le nom est en francais
+=> il faut donc le modifier les case pour les faires correspondre au nom des classes
+
+
+Fou.java :
+- Import de ArrayList et List plutôt que * pour éviter d'importer des fichiers qui nes sont pas utilisé => gagner en performance
+- Indentation
+- Delete le todo dans toString
+
+
+Pion.java :
+- Import de ArrayList et List plutôt que * pour éviter d'importer des fichiers qui nes sont pas utilisé => gagner en performance
+- Indentation
+- Passe en private l'attribut _1erTour
+- delete todo
+- dans Position temp1 = new Position(other.position.getX(), y); => passe en paramètre other.position.getX() au lieu de passer
+le x (int x = other.position.getX();) du dessus. => repetition de code
+
+
+Position.java :
+- indentation
+
+
+Roi.java :
+- Ajout de public pour les méthodes update et getRoiCouleur
+- delete todo
+
+
+Roi.java :
+- delete todo
+- indentation
+
+
+General :
+- Certaine fois il y a des _ aux propriétés alors que d'autre fois non => il faut garder une écriture pour tous le code =>
+ex : dans Pion.java
+- Création d'un package model qui contient toutes les pièces => permet une meilleure lecture du code, et une meilleure maintenabilité
+=> modification des propriéte pour les passer en private et utiliser les get associé
+
+
+Ajout de la fonctionnalité permettant d'ajouter un nom :
+- Je suis passé par une class Utilitaire qui contient une méthode nameUser qui permet de récup le nom taper dans la console
+=> elle est en static pour pouvoir l'utiliser dans ma class Executeur en paramètre de mon objet new Game(Utilitaire.nameUser(), Utilitaire.nameUser());
+=> cela permet d'éviter d'instancier un objet pour utiliser la méthode
+
+
+Ajout de la Reine.java :
+- Mix entre le code Tour et Fou
