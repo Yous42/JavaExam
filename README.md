@@ -32,3 +32,4 @@ En fonctionnalités manquantes, on a :
 .Il serait pas mal de faire un petit blabla à destination du fiston, pour qu'il sache ce qu'"il" a fait sur "son" projet. Avec un avis général+quelques détails sur le code, ca peut être pas mal.
 
 Tu t'y prends comme tu veux, mais le projet doit être prêt aujourd'hui.
+# Java
